@@ -1,15 +1,51 @@
 ![76@2x](https://o90qqsid7.qnssl.com/76@2x-1.png)
 湖南工业大学校园助手iOS端
 # 项目总体概况
-> 截止到17年1月24日，上架三个月的时间里，使用者已经达到2500人，主要使用对象为湖南工业大学学生，开发语言采用Objective-c，开发软件为Xcode，适配iOS8以上系统，后端数据部分采用JSON，由实验室网络组负责。
-![](/https://o90qqsid7.qnssl.com/14853135352743.jpg)
+> 截止到17年1月24日，上架三个月的时间里，iOS端使用者已经达到2500人，另外Android端使用人数已过8000+,主要使用对象为湖南工业大学学生，覆盖全校60%以上人群，iOS端开发语言采用Objective-c，开发软件为Xcode，适配iOS8以上系统，后端数据部分采用JSON。
+> 下载方式: [AppStore](https://itunes.apple.com/cn/app/gong-da-zhu-shou-hu-nan-gong/id1164848835)
 
-> 下载方式: AppStore搜索工大助手
-<!--more-->
-## 目前实现功能如下
-![功能情况](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2016.35.51.png)
+# 项目框架
+```
+.
+	├── HutHelper
+	│   ├── 3rd：因为各种原因没有用Pods管理的第三方库
+	│   ├── Utils：一些工具类等
+	│   ├── Request：网络请求
+	│   ├── Models：数据模型
+	│   ├── View：界面，xib或者storyboard之类的文件
+	│   ├── Supporting Files：一些支持文件
+	│   └── Controllers
+	│       ├── Main：主界面
+	│       ├── Login：登录界面
+	│       ├── Class：课程表
+	│       ├── Score：考试成绩
+	│       ├── Exam：考试计划查询
+	│       ├── User：用户界面
+	│       ├── FeedBack：反馈界面
+	│       ├── Power：寝室电费查询
+	│       ├── Set：用户设置界面
+	│       ├── Lost：失物招领界面
+	│       ├── Day：校历界面
+	│       ├── HomeWork：网上作业界面
+	│       ├── Hand：二手市场界面
+	│       ├── Library：图书馆界面
+	│       ├── Other：其他
+	└── Pods：项目使用了[CocoaPods](http://code4app.com/article/cocoapods-install-usage)这个类库管理工具
+	└── json:请求的示例数据
+```
+请注意，因为使用了Pods,所以请下载完项目后先运行
+```
+pod install
+```
+另外考虑到在校用户信息的安全性,**App的接口地址全部换成了镜像接口,与线上版本不同**
+除此之外，一切和上线版本代码全部一致
+同时因为镜像接口的数据是固定的,所以测试时，**登录界面，无论输入什么，点登录就可以**
+课程数据,考试数据,用户数据,课表数据,说说数据,二手数据这些也都是固定的
+**如果要进行二次开发，可以直接把请求的地址改成自己后端的地址，然后把接受的数据改一下即可.**
+请求的数据可以在json文件夹中查看
 
-## 上架情况
+
+# 上架情况
 ![上架情况](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2016.37.49.png)
 
 # 功能介绍
@@ -58,13 +94,31 @@
 ![网上作业](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.41.41.png)
 
 # 项目使用的开源项目
-> [LeftSlide - 主界面框架](https://github.com/chennyhuang/LeftSlide)
-> [MBProgressHUD - 等待框动画](https://github.com/jdg/MBProgressHUD)
-> [GWPCourseListView - 课程表界面](https://github.com/GanWenpeng/GWPCourseListView)
-> [LGPlusButtonsView - 按钮控件](https://github.com/Friend-LGA/LGPlusButtonsView)
-> [UUCharView - 成绩曲线图标](https://github.com/ZhipingYang/UUChartView)
-> [SKSTableView - 成绩列表](https://github.com/sakkaras/SKSTableView)
+- [LeftSlide - 主界面框架](https://github.com/chennyhuang/LeftSlide)
+- [MBProgressHUD - 等待框动画](https://github.com/jdg/MBProgressHUD)
+- [GWPCourseListView - 课程表界面](https://github.com/GanWenpeng/GWPCourseListView)
+- [LGPlusButtonsView - 按钮控件](https://github.com/Friend-LGA/LGPlusButtonsView)
+- [UUCharView - 成绩曲线图标](https://github.com/ZhipingYang/UUChartView)
+- [SKSTableView - 成绩列表](https://github.com/sakkaras/SKSTableView)
+- [TZImagePickerController - 照片选择器]
+- [SDWebImage - 异步多图加载]
+- [MJRefresh - 上拉下拉刷新]
+- [YYModel - Json转Model]
+- [AFNetworking - 请求异步加载]
+- [UMengUShare - 友盟分享]
+- [ASIHTTPRequest - 照片同步上传]
 
+# 最后
+这是本人刚进大二,在湖南工业大学实验室写的一款App，目的主要是为湖南工业大学的学生提供一些便利,同时也是湖南省省级项目,App中有很多不足的地方,代码的可读性也不是很好,甚至于最开始的版本，网络请求都是同步请求，没有加载框，很容易卡死。但是不管如何，我都在完善。
+这是开源的第一个版本,在后续每当上线版本有大的更新后，我都会同步发布在这里
+其目的是，如果有其他学校的同学也需要开发一个服务于自己母校的iOS App，可以从这得到一定的参考
+如果有任何问题也可以在issues留言
+
+**最后,求一个Star**
+我的个人网站是[www.wxz.name](www.wxz.name)
+
+# License
+[Apache Licene 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 
 
