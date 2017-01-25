@@ -72,10 +72,11 @@ pod install
 
 
 ## 成绩查询
-这里调用了[UUCharView - 成绩曲线图标](https://github.com/ZhipingYang/UUChartView)开源项目，展现了用户成绩数据，首先第一次打开这个界面会读取用户成绩数据，并缓存，后面几次打开时会直接读取缓存数据。如果需要刷新的话可以点刷新按钮。
+- 这里调用了[UUCharView - 成绩曲线图标](https://github.com/ZhipingYang/UUChartView)开源项目，展现了用户成绩数据，首先第一次打开这个界面会读取用户成绩数据，并缓存，后面几次打开时会直接读取缓存数据。如果需要刷新的话可以点刷新按钮。
 
 ![曲线成绩](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.13.48.png?imageView2/2/w/400/h/800/interlace/0/q/41)
-点右上角的按钮可以查询所有课程的成绩数据，同时也可以折叠数据。
+
+- 点右上角的按钮可以查询所有课程的成绩数据，同时也可以折叠数据。
 
 ![所有成绩查询](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.16.47.png?imageView2/2/w/400/h/800/interlace/0/q/41)
 ## 课程表
@@ -129,14 +130,14 @@ pod install
 - [UMengUShare - 友盟分享]
 - [ASIHTTPRequest - 照片同步上传]
 
-# 最后,求一个Star
+# 最后
 这是本人刚进大二,在湖南工业大学实验室写的一款App，目的主要是为湖南工业大学的学生提供一些便利,同时也是湖南省省级项目,App中有很多不足的地方,代码的可读性也不是很好,甚至于最开始的版本，网络请求都是同步请求，没有加载框，很容易卡死。但是不管如何，我都在完善。
 这是开源的第一个版本,在后续每当上线版本有大的更新后，我都会同步发布在这里
 其目的是，如果有其他学校的同学也需要开发一个服务于自己母校的iOS App，可以从这得到一定的参考
 如果有任何问题也可以在issues留言
 
 我的个人网站是[www.wxz.name](www.wxz.name)
-
+**求一个Star鼓励**
 # License
 [Apache Licene 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
