@@ -1,7 +1,7 @@
 # 湖南工业大学校园助手iOS端
 ![76@2x](https://o90qqsid7.qnssl.com/76@2x-1.png)
 # 项目总体概况
-> 截止到17年1月24日，上架三个月的时间里，iOS端使用者已经达到2500人，另外Android端使用人数已过8000+,主要使用对象为湖南工业大学学生，覆盖全校60%以上人群，iOS端开发语言采用Objective-c，开发软件为Xcode，适配iOS8以上系统，后端数据部分采用JSON。
+- 截止到17年1月24日，上架三个月的时间里，iOS端使用者已经达到2500人，另外Android端使用人数已过8000+,主要使用对象为湖南工业大学学生，覆盖全校60%以上人群，iOS端开发语言采用Objective-c，开发软件为Xcode，适配iOS8以上系统，后端数据部分采用JSON。
 
 - 下载方式: [AppStore](https://itunes.apple.com/cn/app/gong-da-zhu-shou-hu-nan-gong/id1164848835)
 
@@ -52,48 +52,67 @@ pod install
 ![](https://o90qqsid7.qnssl.com/14853135352743.jpg)
 # 功能介绍
 ## 登录界面
-登录界面采用简洁的方式展示，界面直接使用xib做成。用户输入学号和密码后，将通过JSON连接网络，得到Msg信息，若成功，读取学生个人信息，以及拿到密匙。若失败返回Msg错误信息。
-![登录界面](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2018.56.58.png?imageView2/2/w/400/h/800/interlace/0/q/41)
-同时为了避免忘记密码的情况发生，设置重置密码的链接，这里直接使用了一个浏览器展示重置密码的网页。
-![重置密码](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.01.37.png)
-## 主界面
-同样的这个界面也是使用xib的方式，一个Image控件，然后九个Button控件以及相应的TextView控件写明按钮名称，很简单没啥技术含量。
-只是在这个主界面启动时，有很多数据需要初始化。
-> viewDidLoad()方法中，需要计算APP打开的此时的周数，并且通过NSUserDefaults类将其数据存储到plist文件中
-> 判断是否为第一次登陆，是的话跳转到登陆界面
-> 判断设置中是否设置自动打开课程表，是的话跳转到课程表
-> 判断用户信息的标签是否上传
-> 初始化抽屉界面
-> ...
+登录界面采用简洁的方式展示。
+用户输入学号和密码后，将通过JSON连接网络，得到Msg信息
+如果成功--->存储Json至NSUserDefault
+如果失败--->返回Msg提示信息
 
-![主界面](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.05.00.png)
+![登录界面](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2018.56.58.png?imageView2/2/w/400/h/800/interlace/0/q/41)
+## 主界面
+主界面是直接用xib做的,图片直接使用UI给的图片,另外的话有很多数据是在这个界面初始化的
+
+- viewDidLoad()方法中，需要计算APP打开的此时的周数，并且通过NSUserDefaults类将其数据存储到plist文件中
+- 判断是否为第一次登陆，是的话跳转到登陆界面
+- 判断设置中是否设置自动打开课程表，是的话跳转到课程表
+- 判断用户信息的标签是否上传
+- 初始化抽屉界面
+- ...
+
+![主界面](https://o90qqsid7.qnssl.com/IMG_1364.png?imageView2/2/w/400/h/800/interlace/0/q/41)
+
 
 ## 成绩查询
 这里调用了[UUCharView - 成绩曲线图标](https://github.com/ZhipingYang/UUChartView)开源项目，展现了用户成绩数据，首先第一次打开这个界面会读取用户成绩数据，并缓存，后面几次打开时会直接读取缓存数据。如果需要刷新的话可以点刷新按钮。
-![曲线成绩](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.13.48.png)
+
+![曲线成绩](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.13.48.png?imageView2/2/w/400/h/800/interlace/0/q/41)
 点右上角的按钮可以查询所有课程的成绩数据，同时也可以折叠数据。
-![所有成绩查询](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.16.47.png)
+
+![所有成绩查询](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.16.47.png?imageView2/2/w/400/h/800/interlace/0/q/41)
 ## 课程表
 这里使用了[GWPCourseListView - 课程表界面](https://github.com/GanWenpeng/GWPCourseListView)开源项目，做了一些调整，并且修复了一些bug，开发者已经接受了我的pull。
 同时自己集成了[LGPlusButtonsView - 按钮控件](https://github.com/Friend-LGA/LGPlusButtonsView)开源项目的按钮控件，使课程表数据可以上下周的调整。
-> 另外加入了实验课程表，可以单独显示，也可以在设置里面设置成一起显示
+- 另外加入了实验课程表，可以单独显示，也可以在设置里面设置成一起显示
 
-![课程表](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.17.43.png)
+![课程表](https://o90qqsid7.qnssl.com/IMG_1365.png?imageView2/2/w/400/h/800/interlace/0/q/41)
 
 ## 考试计划
-考试计划中将显示教务处正在计划和已经确定的考试，其中已经确定的用绿灯表示，正在计划的用红灯表示。
-![考试计划](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.37.30.png)
+考试计划中将显示教务处正在计划和已经确定的考试
+用的自定义tableview做的，很简单的绘制一个cell，然后将Json的数据与之交互
+
+![IMG_1366](https://o90qqsid7.qnssl.com/IMG_1366.png?imageView2/2/w/400/h/800/interlace/0/q/41)
 
 ## 电费查询
 简单的调用接口查询，没什么技术含量
-![电费查询](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.39.13.png)
 
+![IMG_1367](https://o90qqsid7.qnssl.com/IMG_1367.png?imageView2/2/w/400/h/800/interlace/0/q/41)
+
+## 校园说说
+这个部分最大的问题就是适配的问题,有的图片多，有的文字多，怎么决定这个长度呢
+所以我把每条说说分为四个部分，从上往下依次是  用户信息和文字/图片部分/评论数目部分/评论部分
+这样首先根据文字的长度，分配第一个cell也就是文字的高度
+然后根据图片的部分，分配第二个cell也就是图片的高度
+
+![IMG_1371](https://o90qqsid7.qnssl.com/IMG_1371.png?imageView2/2/w/400/h/800/interlace/0/q/41)
+## 二手市场
+每个cell显示两个商品，很简单的做法
+
+![IMG_1372](https://o90qqsid7.qnssl.com/IMG_1372.png?imageView2/2/w/400/h/800/interlace/0/q/41)
 ## 图书馆/校园说说/二手市场/网上作业
-这四个都直接用的Web端，还没有时间来得及做，会尽快补上，先直接放浏览图吧
-![图书馆](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.41.19.png)
-![校园说说](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.41.30.png)
-![二手市场](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.41.36.png)
-![网上作业](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.41.41.png)
+这两个部分因为没有接口，所以直接用web端做的
+
+![图书馆](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.41.19.png?imageView2/2/w/400/h/800/interlace/0/q/41)
+
+![网上作业](https://o90qqsid7.qnssl.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-11-06%2019.41.41.png?imageView2/2/w/400/h/800/interlace/0/q/41)
 
 # 项目使用的开源项目
 - [LeftSlide - 主界面框架](https://github.com/chennyhuang/LeftSlide)
@@ -120,6 +139,5 @@ pod install
 
 # License
 [Apache Licene 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
-
 
 
